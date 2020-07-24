@@ -3,7 +3,7 @@
 // @namespace    p1
 // @run-at       document-start
 // @version      0.1
-// @description  Logs all emotes sent in chat in console!
+// @description  Logs all emotes sent ingame in console!
 // @author       p1
 // @match        https://boxcritters.com/play/
 // @match        https://boxcritters.com/play/?*
