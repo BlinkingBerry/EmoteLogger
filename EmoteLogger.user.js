@@ -2,7 +2,7 @@
 // @name         Emote Logger
 // @namespace    p1
 // @run-at       document-start
-// @version      0.1
+// @version      0.2
 // @description  Logs all emotes sent ingame in console!
 // @author       p1
 // @match        https://boxcritters.com/play/
@@ -25,8 +25,8 @@
 	}, 1000/60);
 
 	function onWorldLoaded() {
-		var emotesArray;
-		var xmlhttp = new XMLHttpRequest();
+		let emotesArray;
+		let xmlhttp = new XMLHttpRequest();
 		xmlhttp.onreadystatechange = function() {
 			if (this.readyState == 4 && this.status == 200) {
 				emotesArray = JSON.parse(this.responseText);
@@ -37,13 +37,21 @@
 		//let emotesArray = world.media.emotes.themes;
 
 
-		var emoteLUT = {adventure: "🗡", angry: "😡", awe: "🥺", blush: "😳", cheeky: "😝", coffee: "☕️", confused: "🤔❓", cool: "😎", crying: "😭", daze: "😵", fart: "💨🎵", gg: "😄🏳️ GG!", happy: "🙂", idea: "😲💡", laugh: "🤣", sad: "😔", scared: "😲", serious: "😐", sick: "🤢", sleep: "😴", smile: "😁", thumbs_up: "😄👍", upset: "😠", worry: "😰", yum: "😋"};
+		let emoteLUT = {adventure: "🗡", angry: "😡", awe: "🥺", blush: "😳", cheeky: "😝", coffee: "☕️", confused: "🤔❓", cool: "😎", crying: "😭", daze: "😵", fart: "💨🎵", gg: "😄🏳️ GG!", happy: "🙂", idea: "😲💡", laugh: "🤣", sad: "😔", scared: "😲", serious: "😐", sick: "🤢", sleep: "😴", smile: "😁", thumbs_up: "😄👍", upset: "😠", worry: "😰", yum: "😋"};
 
 
-		function getName(userID){var userName;world.room.playerCrumbs.forEach(crumb=>{if(crumb.i==userID){userName=crumb.n}});return userName;};
+		function getName(playerId){
+			let userName;
+			world.room.playerCrumbs.forEach(crumb=>{
+				if(crumb.i==playerId) {
+					userName=crumb.n
+				}
+			});
+			return userName;
+		};
 
 		world.on("E", function(emoteEvent) {
-			var critterImage = "";
+			let critterImage = "";
 			switch(world.stage.room.players[emoteEvent.i].critterId) {
 				case "hamster":
 					critterImage = "🐹";
@@ -64,8 +72,8 @@
 					critterImage = "NEW CRITTER";
 			};
 
-			var critterEmoteText = world.stage.room.players[emoteEvent.i].critterId + "_" + emoteEvent.e;
-			var critterEmote = "";
+			let critterEmoteText = world.stage.room.players[emoteEvent.i].critterId + "_" + emoteEvent.e;
+			let critterEmote = "";
 
 			if (emoteEvent.e === undefined || emotesArray.animations[critterEmoteText] === undefined) {
 				critterEmote = emoteLUT["smile"] + " (smile)";
