@@ -2,7 +2,9 @@
 // @name         Emote Logger
 // @namespace    p1
 // @run-at       document-start
-// @version      0.2
+// @version      0.3
+// @updateURL    https://github.com/p1-BCMC/EmoteLogger/raw/master/EmoteLogger.user.js
+// @downloadURL  https://github.com/p1-BCMC/EmoteLogger/raw/master/EmoteLogger.user.js
 // @description  Logs all emotes sent ingame in console!
 // @author       p1
 // @match        https://boxcritters.com/play/
