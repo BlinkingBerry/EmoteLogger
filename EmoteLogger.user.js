@@ -2,7 +2,7 @@
 // @name         Emote Logger
 // @namespace    p1
 // @run-at       document-start
-// @version      0.4
+// @version      0.5
 // @updateURL    https://github.com/p1-BCMC/EmoteLogger/raw/master/EmoteLogger.user.js
 // @downloadURL  https://github.com/p1-BCMC/EmoteLogger/raw/master/EmoteLogger.user.js
 // @description  Logs all emotes sent ingame in console!
@@ -30,17 +30,8 @@
 	function onWorldLoaded() {
 
 		let emotes = client.loadedSpriteSheets.emotes;
-		let themes = []; // Will contain all the emote names
 
 		let emoteContainer; // Will contain the emote sprites
-
-
-		// Get emote list from client
-		emotes._animations.forEach(theme => {
-			if (theme.toLowerCase().startsWith(world.player.critterId.toLowerCase())) {
-				themes.push(theme.toLowerCase());
-			};
-		});
 
 		let emoteLUT = {adventure: "🗡", angry: "😡", awe: "🥺", blush: "😳", cheeky: "😝", coffee: "☕️", confused: "🤔❓", cool: "😎", crying: "😭", daze: "😵", fart: "💨🎵", gg: "😄🏳️ GG!", happy: "🙂", idea: "😲💡", laugh: "🤣", sad: "😔", scared: "😲", serious: "😐", sick: "🤢", sleep: "😴", smile: "😁", thumbs_up: "😄👍", upset: "😠", worry: "😰", yum: "😋"};
 
@@ -82,7 +73,7 @@
 			let critterEmoteText = world.stage.room.players[emoteEvent.i].critterId + "/" + emoteEvent.e.toLowerCase();
 			let critterEmote = "";
 
-			if (emoteEvent.e === undefined || themes[critterEmoteText] === undefined) {
+			if (emoteEvent.e === undefined || emotes._data[critterEmoteText] === undefined) {
 				critterEmote = emoteLUT["smile"] + " (smile)";
 			} else {
 				critterEmote = emoteLUT[emoteEvent.e] + " (" + emoteEvent.e + ")";
